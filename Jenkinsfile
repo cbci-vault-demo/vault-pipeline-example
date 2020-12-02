@@ -52,7 +52,7 @@ spec:
             }
             steps {
                 sh "source /vault/secrets/jenkins-test"
-                sh "echo TEST_NAME"
+                sh "echo $TEST_NAME"
             }
         }
     }
