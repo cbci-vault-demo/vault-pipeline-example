@@ -6,12 +6,7 @@ pipeline {
     agent any
     stages {
         stage("Get Secrets") {
-            environment { 
-              //Hashicorp Vault Pipeline Plugin example
-              SECRET = vault path: 'secret/jenkins/database/config', key: 'username'
-            }
             steps {
-              echo "${SECRET}"
                 script {
                     // define the secrets and the env variables
                     // engine version can be defined on secret, job, folder or global.
