@@ -51,7 +51,7 @@ spec:
                 }
             }
             steps {
-                echo "$TEST_NAME"
+                echo "$JENKINS_NAME"
             }
         }
     }
