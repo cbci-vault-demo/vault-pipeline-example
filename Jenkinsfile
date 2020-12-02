@@ -51,7 +51,8 @@ spec:
                 }
             }
             steps {
-                echo "$JENKINS_NAME"
+                sh "source /vault/secrets/jenkins-test"
+                echo "$TEST_NAME"
             }
         }
     }
