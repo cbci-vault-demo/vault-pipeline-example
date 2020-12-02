@@ -52,6 +52,6 @@ spec:
             steps {
                 sh "cat /vault/secrets/jenkins-test; echo"
             }
-            
+        }
     }
 }
