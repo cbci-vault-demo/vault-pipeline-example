@@ -2,9 +2,8 @@
 // engine version can be defined on secret, job, folder or global.
 // the default is engine version 2 unless otherwise specified globally.
 def secrets = [[path: 'secret/jenkins/database/config', engineVersion: 2, secretValues: [[envVar: 'name', vaultKey: 'username']]]]
-
 def secretValue
-
+@Library('pipeline-library@master') _
 pipeline {
     agent any
     options { skipDefaultCheckout() }
@@ -42,7 +41,7 @@ metadata:
     vault.hashicorp.com/agent-inject-secret-jenkins-test: "secret/data/jenkins/test"
     vault.hashicorp.com/agent-inject-template-jenkins-test: |
       {{- with secret "secret/data/jenkins/test" -}}
-        export TEST_NAME="{{ .Data.data.name }}"
+        TEST_NAME="{{ .Data.data.name }}"
       {{- end -}}
     vault.hashicorp.com/tls-skip-verify: "true"
 spec:
@@ -51,8 +50,8 @@ spec:
                 }
             }
             steps {
-                sh "source /vault/secrets/jenkins-test"
-                sh 'echo $TEST_NAME'
+                defineProps("/vault/secrets/jenkins-test")
+                echo "$TEST_NAME"
             }
         }
     }
