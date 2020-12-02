@@ -50,7 +50,7 @@ spec:
                 }
             }
             steps {
-                defineProps("/vault/secrets/jenkins-test", [])
+                defineProps("/vault/secrets/jenkins-test")
                 echo "$TEST_NAME"
             }
         }
