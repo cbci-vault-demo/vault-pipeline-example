@@ -7,6 +7,7 @@ def secretValue
 
 pipeline {
     agent any
+    options { skipDefaultCheckout() }
     stages {
         stage("Get Secrets") {
             steps {
