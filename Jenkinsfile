@@ -42,7 +42,7 @@ metadata:
     vault.hashicorp.com/agent-inject-secret-jenkins-test: "secret/data/jenkins/test"
     vault.hashicorp.com/agent-inject-template-jenkins-test: |
       {{- with secret "secret/data/jenkins/test" -}}
-      {{ .Data.data.name }}
+        export TEST_NAME="{{ .Data.data.name }}"
       {{- end -}}
     vault.hashicorp.com/tls-skip-verify: "true"
 spec:
@@ -51,7 +51,7 @@ spec:
                 }
             }
             steps {
-                sh "cat /vault/secrets/jenkins-test; echo"
+                echo "$TEST_NAME"
             }
         }
     }
